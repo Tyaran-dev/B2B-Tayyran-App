@@ -3,7 +3,53 @@
 
 ## Overview
 
-Create a comprehensive user management system with three user types: Members (public users with registration fee), B2B Admins (agency/company users with wallet), and Super Admin (manages B2B accounts).
+This implementation creates a comprehensive dual-user registration and management system for the Tayran Hotels platform. The system supports three distinct user types with different access levels and payment mechanisms:
+
+**1. Members (Public Users):**
+
+- Pay a one-time 10 SAR registration fee to create an account
+- Registration requires payment completion followed by super admin approval before activation
+- Once active, members receive 5% discount on all bookings (flights & hotels)
+- Earn loyalty points based on custom rules (e.g., points per mile traveled on flights)
+- Points are tracked for future prize redemption (redemption system out of current scope)
+- Can view their authenticated order history (excludes pre-registration guest orders)
+- Anyone can search and book as a guest without registration, but members must login to access discounts
+
+**2. B2B Admins (Agency/Company Users):**
+
+- Created by super admin with pre-loaded wallet balance
+- Multiple admins can belong to the same company and share order visibility
+- All bookings are paid from wallet balance (no external payment gateway)
+- System checks wallet balance before allowing bookings
+- Wallet is debited only after successful booking confirmation
+- Failed bookings release the held amount back to wallet
+- Can view complete order history for their entire company
+- Orders are stored in a separate B2BBooking collection for reporting
+
+**3. Super Admin:**
+
+- Single account with full system access
+- Manages member approvals (approve/suspend membership status)
+- Creates B2B admin accounts with company details and initial wallet balance
+- Can add/deduct credits from B2B admin wallets
+- Views all members, B2B admins, and their respective orders
+- Access to super admin dashboard (backend API only, UI out of scope)
+
+**Guest Orders:**
+
+- Tracked by email only without user account
+- Saved to FinalBooking collection with no userId link
+- Members do NOT see their pre-registration guest orders in order history
+
+**Key Features:**
+
+- Secure authentication with JWT tokens and bcrypt password hashing
+- Role-based access control for all protected routes
+- Integration with existing MyFatoorah payment gateway for member registration
+- Atomic wallet transactions for B2B admins to prevent race conditions
+- Points calculation system based on flight miles and booking details
+- Comprehensive order tracking linked to user accounts
+- Multi-admin company support with shared order visibility
 
 ## Database Schema Changes
 
