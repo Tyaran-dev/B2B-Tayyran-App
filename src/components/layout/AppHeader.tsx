@@ -6,11 +6,15 @@ import { useSidebar } from "@/context/SidebarContext";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
+import { UserNav } from "./UserNav";
+import { Button } from "@/components/ui/button";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+
+  console.log(isMobileOpen);
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -41,7 +45,7 @@ const AppHeader: React.FC = () => {
   }, []);
 
   return (
-    <header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 dark:border-gray-800 dark:bg-gray-900 lg:border-b">
+    <header className="sticky top-0 flex w-full bg-white border-gray-200 z-40 dark:border-gray-800 dark:bg-gray-900 lg:border-b">
       <div className="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
         <div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 dark:border-gray-800 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4">
           <button
@@ -85,19 +89,19 @@ const AppHeader: React.FC = () => {
 
           <Link href="/" className="lg:hidden">
             <Image
-              width={154}
-              height={32}
-              className="dark:hidden"
-              src="./images/logo/logo.svg"
+              className={`${isMobileOpen ? "hidden" : "block"} dark:hidden`}
+              src="/assets/icons/logo.svg"
               alt="Logo"
+              width={60}
+              height={40}
             />
-            <Image
+            {/* <Image
               width={154}
               height={32}
               className="hidden dark:block"
               src="./images/logo/logo-dark.svg"
               alt="Logo"
-            />
+            />  */}
           </Link>
 
           <button
@@ -163,10 +167,11 @@ const AppHeader: React.FC = () => {
           <div className="flex items-center gap-2 2xsm:gap-3">
             {/* <!-- Dark Mode Toggler --> */}
             <ThemeToggleButton />
+            <Link href="/newbooking ">
+              <Button className="capitalize cursor-pointer">+ new booking</Button>
+            </Link>
             {/* <!-- Dark Mode Toggler --> */}
-
-            {/* <NotificationDropdown /> */}
-            {/* <!-- Notification Menu Area --> */}
+            <UserNav />
           </div>
           {/* <!-- User Area -->
           <UserDropdown /> */}

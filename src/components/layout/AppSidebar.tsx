@@ -29,7 +29,7 @@ const AppSidebar: React.FC = () => {
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
-              className={`menu-item group  ${
+              className={`menu-item group w-full flex p-4 gap-2 rounded-lg ${
                 openSubmenu?.type === menuType && openSubmenu?.index === index
                   ? "menu-item-active"
                   : "menu-item-inactive"
@@ -64,7 +64,7 @@ const AppSidebar: React.FC = () => {
             nav.path && (
               <Link
                 href={nav.path}
-                className={`menu-item group ${
+                className={`menu-item group w-full flex p-4 gap-2 rounded-lg ${
                   isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
                 }`}
               >
@@ -220,24 +220,19 @@ const AppSidebar: React.FC = () => {
           {isExpanded || isMobileOpen ? (
             <Image
               className="dark:hidden"
-              src="/assets/icons/logo.svg"
+              src="/b2b-logo.png"
               alt="Logo"
-              width={90}
+              width={100}
               height={40}
             />
           ) : (
-            <Image
-              src="/assets/icons/logo.svg"
-              alt="Logo"
-              width={40}
-              height={32}
-            />
+            <Image src="/b2b-logo.png" alt="Logo" width={40} height={32} />
           )}
         </Link>
       </div>
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 ">
             <div>
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${

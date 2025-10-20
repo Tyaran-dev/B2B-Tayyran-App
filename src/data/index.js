@@ -10,35 +10,46 @@ import {
   UserCircleIcon,
 } from "@/icons/index";
 
+import Card1 from "@/icons/card1.svg";
+import Card2 from "@/icons/card2.svg";
+import Card3 from "@/icons/card3.svg";
+import Card4 from "@/icons/card4.svg";
+import { BookX, Calendar, CalendarCheck, CircleDollarSign, Ticket, } from "lucide-react";
+
 export const navItems = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+    path: "/",
   },
   {
     icon: <CalenderIcon />,
-    name: "Calendar",
-    path: "/calendar",
+    name: "Pending Requests",
+    path: "/pendingRequests",
   },
   {
     icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
+    name: "Bookings",
+    path: "/bookings",
   },
 
   {
-    name: "Forms",
+    name: "Settings",
     icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    path: "/settings",
   },
   {
-    name: "Tables",
+    name: "Users",
     icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
+    path: "/users",
   },
   {
-    name: "Pages",
+    name: "Billing",
+    icon: <UserCircleIcon />,
+    path: "/billings",
+  },
+  {
+    name: "Company",
     icon: <PageIcon />,
     subItems: [
       { name: "Blank Page", path: "/blank", pro: false },
@@ -75,5 +86,37 @@ export const othersItems = [
       { name: "Sign In", path: "/signin", pro: false },
       { name: "Sign Up", path: "/signup", pro: false },
     ],
+  },
+];
+
+// ✅ Data array for cards
+export const statsData = [
+  {
+    title: "Total Spent",
+    value: "$10,000",
+    change: "+715%",
+    badgeClass: "bg-secondry-light text-secondry",
+    icon: <CircleDollarSign className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>, // ✅ Works with Tailwind color
+  },
+  {
+    title: "Total Bookings",
+    value: "55",
+    change: "+715%",
+    badgeClass: "bg-primary/10 text-primary",
+    icon: <CalendarCheck className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
+  },
+  {
+    title: "Cancelled Bookings",
+    value: "10",
+    change: "+715%",
+    badgeClass: "bg-red-100 text-red-600",
+    icon: <BookX className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
+  },
+  {
+    title: "Avg Ticket Price",
+    value: "$10,000",
+    change: "+15%",
+    badgeClass: "bg-green-100 text-green-600",
+    icon: <Ticket className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
   },
 ];
