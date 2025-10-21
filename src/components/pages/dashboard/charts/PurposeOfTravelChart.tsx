@@ -41,7 +41,7 @@ export default function PurposeOfTravelChart() {
   };
 
   return (
-    <div className=" rounded-xl shadow p-6 w-full h-[550px]">
+    <div className=" p-6 w-full h-[550px]">
       <h2 className="text-lg font-semibold mb-4">Purpose of Travel</h2>
       <div className="h-[350px] md:h-[450px]">
         <Pie data={data} options={options} />

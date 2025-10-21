@@ -10,11 +10,13 @@ import {
   UserCircleIcon,
 } from "@/icons/index";
 
-import Card1 from "@/icons/card1.svg";
-import Card2 from "@/icons/card2.svg";
-import Card3 from "@/icons/card3.svg";
-import Card4 from "@/icons/card4.svg";
-import { BookX, Calendar, CalendarCheck, CircleDollarSign, Ticket, } from "lucide-react";
+import {
+  BookX,
+  Calendar,
+  CalendarCheck,
+  CircleDollarSign,
+  Ticket,
+} from "lucide-react";
 
 export const navItems = [
   {
@@ -96,27 +98,215 @@ export const statsData = [
     value: "$10,000",
     change: "+715%",
     badgeClass: "bg-secondry-light text-secondry",
-    icon: <CircleDollarSign className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>, // ✅ Works with Tailwind color
+    icon: (
+      <CircleDollarSign className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200" />
+    ), // ✅ Works with Tailwind color
   },
   {
     title: "Total Bookings",
     value: "55",
     change: "+715%",
     badgeClass: "bg-primary/10 text-primary",
-    icon: <CalendarCheck className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
+    icon: (
+      <CalendarCheck className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200" />
+    ),
   },
   {
     title: "Cancelled Bookings",
     value: "10",
     change: "+715%",
     badgeClass: "bg-red-100 text-red-600",
-    icon: <BookX className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
+    icon: (
+      <BookX className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200" />
+    ),
   },
   {
     title: "Avg Ticket Price",
     value: "$10,000",
     change: "+15%",
     badgeClass: "bg-green-100 text-green-600",
-    icon: <Ticket className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200"/>,
+    icon: (
+      <Ticket className="bg-secondry rounded-lg w-12 h-10 p-2 text-slate-200" />
+    ),
+  },
+];
+
+export const MonthTableData = [
+  {
+    id: "INV001",
+    status: "Paid",
+    value: [20, 80],
+    amount: 250.0,
+  },
+  {
+    id: "INV002",
+    status: "Pending",
+    value: [40, 60],
+    amount: 180.0,
+  },
+  {
+    id: "INV003",
+    status: "Overdue",
+    value: [10, 90],
+    amount: 320.0,
+  },
+  {
+    id: "INV004",
+    status: "Pending",
+    value: [30, 60],
+    amount: 180.0,
+  },
+  {
+    id: "INV005",
+    status: "Overdue",
+    value: [10, 80],
+    amount: 320.0,
+  },
+  {
+    id: "INV006",
+    status: "Paid",
+    value: [20, 80],
+    amount: 250.0,
+  },
+  {
+    id: "INV007",
+    status: "Pending",
+    value: [40, 60],
+    amount: 180.0,
+  },
+  {
+    id: "INV008",
+    status: "Overdue",
+    value: [10, 90],
+    amount: 320.0,
+  },
+  {
+    id: "INV009",
+    status: "Overdue",
+    value: [10, 90],
+    amount: 320.0,
+  },
+];
+
+export const DayTableData = [
+  {
+    id: 1,
+    airline: "CloudNine Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/cloudnine.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
+  },
+  {
+    id: 2,
+    airline: "Qantas Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/qantas.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
+  },
+    {
+    id: 3,
+    airline: "CloudNine Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/cloudnine.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
+  },
+  {
+    id: 4,
+    airline: "Qantas Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/qantas.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
+  },
+    {
+    id: 5,
+    airline: "CloudNine Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/cloudnine.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
+  },
+  {
+    id: 6,
+    airline: "Qantas Airline",
+    code: "QW-MN9087",
+    value: [20, 80],
+    logo: "/assets/airlines/qantas.svg",
+    from: "Paris",
+    to: "New York",
+    depTime: "9:00 AM",
+    arrTime: "12:00 PM",
+    date: "July 15, 2024",
+    duration: "9 hours",
+    status: "Confirmed",
+    avatars: [
+      "/assets/users/u1.jpg",
+      "/assets/users/u2.jpg",
+      "/assets/users/u3.jpg",
+    ],
+    extra: "+144",
   },
 ];

@@ -1,7 +1,26 @@
 import React from "react";
-
+import NewBooking from "@/components/pages/new-booking/Newbooking";
+import SearchFormButtons from "@/components/pages/new-booking/SearchFormButtons";
+import SearchForm from "@/components/pages/new-booking/SearchForm";
 const page = () => {
-  return <div>new booking page</div>;
+  return (
+    <div className="flex flex-col gap-4">
+      <h2 className="text-2xl">New Booking</h2>
+      {/* search form  */}
+      <div className="lg:grid lg:grid-cols-2 lg:gap-4">
+        {/* right section  */}
+        <div className="my-4 p-4 bg-white rounded-lg">
+          <SearchForm />{" "}
+        </div>
+        {/* left section  */}
+        <div className="my-4 bg-blue-500">other section </div>
+      </div>
+      {/* search buttons */}
+      <div>
+        <SearchFormButtons />
+      </div>
+    </div>
+  );
 };
 
 export default page;
