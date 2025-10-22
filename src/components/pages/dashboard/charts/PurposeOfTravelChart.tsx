@@ -2,12 +2,12 @@
 
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
+import { purposOfTravel } from "@/data";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PurposeOfTravelChart() {
   const data = {
-    labels: ["Education", "Business", "Tourism", "Leisure", "Student", "Visiting"],
+    labels: purposOfTravel,
     datasets: [
       {
         data: [20, 25, 15, 10, 20, 10],

@@ -229,7 +229,7 @@ export const DayTableData = [
     ],
     extra: "+144",
   },
-    {
+  {
     id: 3,
     airline: "CloudNine Airline",
     code: "QW-MN9087",
@@ -269,7 +269,7 @@ export const DayTableData = [
     ],
     extra: "+144",
   },
-    {
+  {
     id: 5,
     airline: "CloudNine Airline",
     code: "QW-MN9087",
@@ -310,3 +310,22 @@ export const DayTableData = [
     extra: "+144",
   },
 ];
+
+
+export const travelClasses = ["Economy", "Premium Economy", "Business", "First Class"];
+
+export const purposOfTravel = ["Education", "Business", "Tourism", "Leisure", "Student", "Visiting"];
+
+export const employees = [
+  { name: "Sarah Johnson", company: "Tech Innovations Inc", role: "Software Engineer", status: "active" },
+  { name: "Marcus Chen", company: "Global Finance Corp", role: "Financial Analyst", status: "inactive" },
+  { name: "Elena Rodriguez", company: "Creative Solutions Ltd", role: "UX Designer" },
+  { name: "David Kim", company: "HealthCare Partners", role: "Medical Consultant" },
+  { name: "Priya Patel", company: "EduTech Solutions", role: "Education Specialist" },
+  { name: "James Wilson", company: "Green Energy Co", role: "Environmental Engineer" },
+  { name: "Aisha Mohammed", company: "Legal Associates LLP", role: "Corporate Lawyer" },
+  { name: "Thomas Baker", company: "Retail Dynamics", role: "Supply Chain Manager" },
+  { name: "Lisa Wang", company: "Digital Marketing Pro", role: "Marketing Director" },
+  { name: "Robert Garcia", company: "Construction Masters", role: "Project Manager" }
+]
+

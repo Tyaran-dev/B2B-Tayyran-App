@@ -1,7 +1,8 @@
 import React from "react";
-import NewBooking from "@/components/pages/new-booking/Newbooking";
-import SearchFormButtons from "@/components/pages/new-booking/SearchFormButtons";
+// import NewBooking from "@/components/pages/new-booking/Newbooking";
+import { EmploysTable } from "@/components/pages/new-booking/EmploysTable";
 import SearchForm from "@/components/pages/new-booking/SearchForm";
+import SearchFormButtons from "@/components/pages/new-booking/SearchFormButtons";
 const page = () => {
   return (
     <div className="flex flex-col gap-4">
@@ -13,7 +14,7 @@ const page = () => {
           <SearchForm />{" "}
         </div>
         {/* left section  */}
-        <div className="my-4 bg-blue-500">other section </div>
+        <div className="my-4 "><EmploysTable /> </div>
       </div>
       {/* search buttons */}
       <div>

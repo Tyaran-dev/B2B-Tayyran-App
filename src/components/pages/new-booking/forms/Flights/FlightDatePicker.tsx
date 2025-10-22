@@ -43,7 +43,7 @@ export default function FlightDatePickers({
             <Button
               variant="outline"
               className={cn(
-                "w-full justify-between rounded-xl border px-3 py-5 text-left font-normal",
+                "w-full justify-between rounded-lg border px-3 py-5 text-left font-normal",
                 !departure && "text-gray-400"
               )}
             >
@@ -86,7 +86,7 @@ export default function FlightDatePickers({
               <Button
                 variant="outline"
                 className={cn(
-                  "w-full justify-between rounded-xl border px-3 py-5 text-left font-normal",
+                  "w-full justify-between rounded-lg border px-3 py-5 text-left font-normal",
                   !returnDate && "text-gray-400"
                 )}
               >

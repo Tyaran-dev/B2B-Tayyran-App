@@ -14,7 +14,7 @@ const TripTypeTabs = ({ flightType, setFlightType }: TripTypeTabsProps) => {
   ];
 
   return (
-    <div className="grid grid-cols-3 bg-[#f8f6ff] w-full">
+    <div className="grid grid-cols-3 bg-[#f8f6ff] w-full rounded-lg">
       {tabs.map((tab) => (
         <button
           key={tab.id}
