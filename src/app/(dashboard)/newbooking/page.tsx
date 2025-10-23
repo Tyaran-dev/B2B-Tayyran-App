@@ -9,17 +9,14 @@ const page = () => {
       <h2 className="text-2xl">New Booking</h2>
       {/* search form  */}
       <div className="lg:grid lg:grid-cols-2 lg:gap-4">
-        {/* right section  */}
+        {/* left section  */}
         <div className="my-4 p-4 bg-white rounded-lg">
           <SearchForm />{" "}
         </div>
-        {/* left section  */}
+        {/* right section  */}
         <div className="my-4 "><EmploysTable /> </div>
       </div>
-      {/* search buttons */}
-      <div>
-        <SearchFormButtons />
-      </div>
+
     </div>
   );
 };

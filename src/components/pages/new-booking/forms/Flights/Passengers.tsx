@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -12,41 +12,89 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronDown, Plus, Minus } from "lucide-react"
+import { Passengers } from "./FlightsSearchForm";
 
-export function PassengerSelector() {
-    const [passengers, setPassengers] = useState({
-        adults: 1,
-        children: 0,
-        infants: 0
-    })
+interface PassengerSelectorProps {
+    onPassengerChange: (passengers: Passengers) => void;
+    initialPassengers?: Passengers;
+}
 
-    const totalPassengers = passengers.adults + passengers.children + passengers.infants
+export const PassengerSelector: React.FC<PassengerSelectorProps> = ({
+    onPassengerChange,
+    initialPassengers = { adults: 1, children: 0, infants: 0 }
+}) => {
+    const [passengers, setPassengers] = useState<Passengers>(initialPassengers);
+
+    // Notify parent when passengers change
+    useEffect(() => {
+        onPassengerChange(passengers);
+    }, [passengers]);
+
+    const totalPassengers = passengers.adults + passengers.children + passengers.infants;
 
     const updatePassengerCount = (type: "adults" | "children" | "infants", delta: number) => {
-        setPassengers(prev => ({
-            ...prev,
-            [type]: Math.max(0, prev[type] + delta)
-        }))
-    }
+        setPassengers(prev => {
+            const newCount = Math.max(0, prev[type] + delta);
 
+            // Validation rules
+            if (type === "adults") {
+                // Ensure at least 1 adult
+                if (newCount < 1) return prev;
+                // Infants cannot exceed adults
+                if (type === "adults" && prev.infants > newCount) {
+                    return {
+                        ...prev,
+                        [type]: newCount,
+                        infants: newCount // Adjust infants to not exceed adults
+                    };
+                }
+            }
 
-    {/* Passenger Count Summary */ }
+            if (type === "infants") {
+                // Infants cannot exceed adults
+                if (newCount > prev.adults) return prev;
+            }
+
+            return {
+                ...prev,
+                [type]: newCount
+            };
+        });
+    };
+
+    // Generate passenger summary text
+    const getPassengerSummary = () => {
+        const parts = [];
+        if (passengers.adults > 0) {
+            parts.push(`${passengers.adults} Adult${passengers.adults !== 1 ? 's' : ''}`);
+        }
+        if (passengers.children > 0) {
+            parts.push(`${passengers.children} Child${passengers.children !== 1 ? 'ren' : ''}`);
+        }
+        if (passengers.infants > 0) {
+            parts.push(`${passengers.infants} Infant${passengers.infants !== 1 ? 's' : ''}`);
+        }
+        return parts.join(", ") || "Select Passengers";
+    };
+
     return (
-
         <div className="space-y-2">
-            <div className="text-sm font-medium text-primary" >Travelers</div>
+            <div className="text-sm font-medium text-primary">Travelers</div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between text-gray-400" >
-                        <span>{totalPassengers} Passenger{totalPassengers !== 1 ? 's' : ''}</span>
-                        <ChevronDown className="h-4 w-4 opacity-50" />
+                    <Button variant="outline" className="w-full justify-between text-gray-400">
+                        <span className="text-left flex-1 truncate">
+                            {getPassengerSummary()}
+                        </span>
+                        <ChevronDown className="h-4 w-4 opacity-50 ml-2 flex-shrink-0" />
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className=" p-4 w-[var(--radix-dropdown-menu-trigger-width)]">
+                <DropdownMenuContent className="p-4 w-[var(--radix-dropdown-menu-trigger-width)] max-w-sm">
                     {/* Adults */}
                     <div className="flex items-center justify-between py-2">
-                        <div>
+                        <div className="flex-1">
                             <div className="font-medium">Adults (12+ Yrs)</div>
+                            <div className="text-xs text-gray-500">Age 12 years and above</div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Button
@@ -54,7 +102,7 @@ export function PassengerSelector() {
                                 size="icon"
                                 className="h-8 w-8"
                                 onClick={() => updatePassengerCount("adults", -1)}
-                                disabled={passengers.adults <= 0}
+                                disabled={passengers.adults <= 1}
                             >
                                 <Minus className="h-3 w-3" />
                             </Button>
@@ -66,6 +114,7 @@ export function PassengerSelector() {
                                 size="icon"
                                 className="h-8 w-8"
                                 onClick={() => updatePassengerCount("adults", 1)}
+                                disabled={totalPassengers >= 9} // Maximum total passengers
                             >
                                 <Plus className="h-3 w-3" />
                             </Button>
@@ -76,8 +125,9 @@ export function PassengerSelector() {
 
                     {/* Children */}
                     <div className="flex items-center justify-between py-2">
-                        <div>
+                        <div className="flex-1">
                             <div className="font-medium">Children (2-12 Yrs)</div>
+                            <div className="text-xs text-gray-500">Age 2 to 12 years</div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Button
@@ -97,6 +147,7 @@ export function PassengerSelector() {
                                 size="icon"
                                 className="h-8 w-8"
                                 onClick={() => updatePassengerCount("children", 1)}
+                                disabled={totalPassengers >= 9} // Maximum total passengers
                             >
                                 <Plus className="h-3 w-3" />
                             </Button>
@@ -107,8 +158,9 @@ export function PassengerSelector() {
 
                     {/* Infants */}
                     <div className="flex items-center justify-between py-2">
-                        <div>
+                        <div className="flex-1">
                             <div className="font-medium">Infants (under 2Yrs)</div>
+                            <div className="text-xs text-gray-500">Under 2 years</div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Button
@@ -128,20 +180,32 @@ export function PassengerSelector() {
                                 size="icon"
                                 className="h-8 w-8"
                                 onClick={() => updatePassengerCount("infants", 1)}
+                                disabled={passengers.infants >= passengers.adults || totalPassengers >= 9}
+                                title={passengers.infants >= passengers.adults ?
+                                    "Infants cannot exceed number of adults" :
+                                    "Maximum passengers reached"}
                             >
                                 <Plus className="h-3 w-3" />
                             </Button>
                         </div>
                     </div>
+
+                    {/* Total Passengers Info */}
+                    <div className="mt-3 pt-2 border-t">
+                        <div className="text-xs text-gray-500 text-center">
+                            Total: {totalPassengers} passenger{totalPassengers !== 1 ? 's' : ''}
+                            {totalPassengers >= 9 && (
+                                <div className="text-orange-600 font-medium mt-1">
+                                    Maximum 9 passengers allowed
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
-
-    )
-}
-
-
-
+    );
+};
 
 
 
@@ -161,7 +225,7 @@ export function PassengerSelector() {
 
 //             if ([
 //               "Pending",
-//               "Authorized", 
+//               "Authorized",
 //               "Paid",
 //               "Success"
 //             ].contains(value.invoiceStatus)) {
