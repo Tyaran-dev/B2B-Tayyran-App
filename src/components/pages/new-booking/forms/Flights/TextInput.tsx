@@ -23,7 +23,7 @@ export default function FlightInputs({ onFlightInputsChange }: FlightInputsProps
   useEffect(() => {
     onFlightInputsChange(fromQuery, toQuery);
   }, [fromQuery, toQuery]);
-
+console.log(fromAirports)
 
   return (
     <div className="lg:grid lg:grid-cols-2 lg:gap-3">
@@ -40,19 +40,20 @@ export default function FlightInputs({ onFlightInputsChange }: FlightInputsProps
         />
         {/* Suggestion list */}
         {fromOpen && (
-          <ul className="absolute top-full left-0 right-0 bg-white border rounded-md mt-1 max-h-60 overflow-y-auto shadow-lg z-10 custom-scrollbar">            {fromAirports.map((airport: any) => (
-            <li
-              key={airport.code}
-              onClick={() => setFromQuery(airport.name)}
-              className="p-2 hover:bg-gray-100 cursor-pointer"
-            >
-              <p className="text-xs">
+          <ul className="absolute top-full left-0 right-0 bg-white border rounded-md mt-1 max-h-60 overflow-y-auto shadow-lg z-10 custom-scrollbar">
+            {fromAirports.map((airport: any) => (
+              <li
+                key={airport.code}
+                onClick={() => setFromQuery(airport.id)}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+              >
+                <p className="text-xs">
 
 
-                {airport.text}
-              </p>
-            </li>
-          ))}
+                  {airport.text}
+                </p>
+              </li>
+            ))}
           </ul>
         )}
         {fromLoading && <p className="text-xs text-gray-400 mt-1">Loading...</p>}
@@ -74,7 +75,7 @@ export default function FlightInputs({ onFlightInputsChange }: FlightInputsProps
           <ul className="absolute top-full left-0 right-0 bg-white border rounded-md mt-1 max-h-60 overflow-y-auto shadow-lg z-10 custom-scrollbar">            {toAirports.map((airport: any) => (
             <li
               key={airport.code}
-              onClick={() => setToQuery(airport.name)}
+              onClick={() => setToQuery(airport.id)}
               className="p-2 hover:bg-gray-100 cursor-pointer"
             >
               <p className="text-xs ">
